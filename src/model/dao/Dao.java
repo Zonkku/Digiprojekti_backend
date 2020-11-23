@@ -4,7 +4,7 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
-import model.Kayttaja;
+import model.Kayttaja; //tuodaan model-kansiosta Kayttaja-luokka
 
 public class Dao {
 	private Connection con=null;
@@ -31,17 +31,17 @@ public class Dao {
 	
 	public ArrayList<Kayttaja> listaaKaikki(){
 		ArrayList<Kayttaja> kayttajat = new ArrayList<Kayttaja>();
-		sql = "SELECT * FROM Digip";       
+		sql = "SELECT * FROM omatTiedot";       
 		try {
 			con=yhdista();
 			if(con!=null){ //jos yhteys onnistui
 				stmtPrep = con.prepareStatement(sql);        		
         		rs = stmtPrep.executeQuery();   
-				if(rs!=null){ //jos kysely onnistui
+				if(rs!=null){ //eli jos kysely onnistui 
 					//con.close();					
 					while(rs.next()){
-						Kayttaja kayttaja = new Kayttaja();
-						kayttaja.setUsername(rs.getString(1));
+						Kayttaja kayttaja = new Kayttaja(); //luodaan uusi Kayttaja-olio
+						kayttaja.setUsername(rs.getString(1)); //työnnetään result setin tiedot olioon
 						kayttaja.setSocialSecurityCode(rs.getString(2));
 						kayttaja.setFamilyName(rs.getString(3));	
 						kayttaja.setFirstNames(rs.getString(4));	
@@ -61,10 +61,7 @@ public class Dao {
 						kayttaja.setIsSupervisor(rs.getBoolean(18));	
 						kayttaja.setIdOfSupervisor(rs.getString(19));	
 						
-						
-						
-						
-						kayttajat.add(kayttaja);
+						kayttajat.add(kayttaja); //lisätään luotu olio kayttajat-listaan
 					}					
 				}				
 			}	
@@ -72,6 +69,6 @@ public class Dao {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}		
-		return kayttajat;
+		return kayttajat; //metodi palauttaa kayttajat-nimisen listan
 	}
 }
