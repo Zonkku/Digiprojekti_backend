@@ -13,7 +13,7 @@ import model.Kayttaja;
 import model.dao.Dao;
 
 
-@WebServlet("/omat_tiedot")
+@WebServlet("/omat_tiedot/*")
 public class Omat_tiedot extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
@@ -25,8 +25,13 @@ public class Omat_tiedot extends HttpServlet {
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		System.out.println("Omat_tiedot.doGet()");
+		
+		String pathInfo = request.getPathInfo(); //haetaan kutsun polkutiedot, esim. /audi			
+		System.out.println("polku: "+pathInfo);	
+		String hakusana = pathInfo.replace("/", "");
+
 		Dao dao = new Dao();
-		ArrayList<Kayttaja> kayttajat = dao.listaaKaikki();
+		ArrayList<Kayttaja> kayttajat = dao.listaaKaikki(hakusana);
 		System.out.println(kayttajat);
 		String strJSON = new JSONObject().put("kayttajat", kayttajat).toString(); //kayttajat-lista jsoniin	
 		response.setContentType("application/json"); //kirjoitetaan servletin html-rajapintaan
