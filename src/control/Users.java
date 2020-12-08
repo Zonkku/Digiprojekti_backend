@@ -13,25 +13,28 @@ import model.Kayttaja;
 import model.dao.Dao;
 
 
-@WebServlet("/omat_tiedot/*")
-public class Omat_tiedot extends HttpServlet {
+@WebServlet("/users/*")
+public class Users extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
    
-    public Omat_tiedot() {
+    public Users() {
         super();
-        System.out.println("Omat_tiedot.Omat_tiedot()");
+        System.out.println("Users.Users()");
     }
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		System.out.println("Omat_tiedot.doGet()");
+		System.out.println("Users.doGet()");
 		
-		String pathInfo = request.getPathInfo(); //haetaan kutsun polkutiedot, esim. /audi			
+		String pathInfo = request.getPathInfo(); //haetaan kutsun polkutiedot, /username			
 		System.out.println("polku: "+pathInfo);	
 		String hakusana = pathInfo.replace("/", "");
 
 		Dao dao = new Dao();
 		ArrayList<Kayttaja> kayttajat = dao.listaaKaikki(hakusana);
+		
+		//Haetaan kayttajat-lista daosta
+		
 		System.out.println(kayttajat);
 		String strJSON = new JSONObject().put("kayttajat", kayttajat).toString(); //kayttajat-lista jsoniin	
 		response.setContentType("application/json"); //kirjoitetaan servletin html-rajapintaan
@@ -41,15 +44,15 @@ public class Omat_tiedot extends HttpServlet {
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		System.out.println("Autot.doPost()");		
+		System.out.println("Users.doPost()");		
 	}
 
 	protected void doPut(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		System.out.println("Autot.doPut()");		
+		System.out.println("Users.doPut()");		
 	}
 	
 	protected void doDelete(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		System.out.println("Autot.doDelete()");		
+		System.out.println("Users.doDelete()");		
 	}
 
 }

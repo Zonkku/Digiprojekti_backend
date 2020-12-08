@@ -1,12 +1,10 @@
 package model;
 
-import java.util.Date;
 
 public class Kayttaja {
-	private String username, socialSecurityCode, familyName, firstNames, nickName, address, postalCode, PostalDistrict, LanguageCode, LanguageCodeDescription, workPeriodId, workPeriodDescription, OficialJobDescription, workDepartment, idOfSupervisor; 
+	private String username, socialSecurityCode, familyName, firstNames, nickName, address, postalCode, PostalDistrict, LanguageCode, LanguageCodeDescription, workPeriodId, workPeriodDescription, OficialJobDescription, workDepartment, idOfSupervisor, workPeriodStartDate, workPeriodEndDate; 
 	private Boolean workPeriodStatus, isSupervisor;
-	private Date  workPeriodStartDate, workPeriodEndDate;
-	
+		
 	public Kayttaja() {
 		super();
 		
@@ -16,7 +14,7 @@ public class Kayttaja {
 			String address, String postalCode, String postalDistrict, String languageCode,
 			String languageCodeDescription, String workPeriodId, String workPeriodDescription,
 			String oficialJobDescription, String workDepartment, String idOfSupervisor, Boolean workPeriodStatus,
-			Boolean isSupervisor, Date workPeriodStartDate, Date workPeriodEndDate) {
+			Boolean isSupervisor, String workPeriodStartDate, String workPeriodEndDate) {
 		super();
 		this.username = username;
 		this.socialSecurityCode = socialSecurityCode;
@@ -175,19 +173,19 @@ public class Kayttaja {
 		this.isSupervisor = isSupervisor;
 	}
 
-	public Date getWorkPeriodStartDate() {
+	public String getWorkPeriodStartDate() {
 		return workPeriodStartDate;
 	}
 
-	public void setWorkPeriodStartDate(Date workPeriodStartDate) {
+	public void setWorkPeriodStartDate(String workPeriodStartDate) {
 		this.workPeriodStartDate = workPeriodStartDate;
 	}
 
-	public Date getWorkPeriodEndDate() {
+	public String getWorkPeriodEndDate() {
 		return workPeriodEndDate;
 	}
 
-	public void setWorkPeriodEndDate(Date workPeriodEndDate) {
+	public void setWorkPeriodEndDate(String workPeriodEndDate) {
 		this.workPeriodEndDate = workPeriodEndDate;
 	}
 

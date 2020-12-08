@@ -56,8 +56,8 @@ public class Dao {
 						kayttaja.setWorkPeriodDescription(rs.getString(12));	
 						kayttaja.setOficialJobDescription(rs.getString(13));	
 						kayttaja.setWorkDepartment(rs.getString(14));	
-						kayttaja.setWorkPeriodStartDate(rs.getDate(15));	
-						kayttaja.setWorkPeriodEndDate(rs.getDate(16));	
+						kayttaja.setWorkPeriodStartDate(rs.getString(15));	
+						kayttaja.setWorkPeriodEndDate(rs.getString(16));	
 						kayttaja.setWorkPeriodStatus(rs.getBoolean(17));	
 						kayttaja.setIsSupervisor(rs.getBoolean(18));	
 						kayttaja.setIdOfSupervisor(rs.getString(19));	
@@ -75,7 +75,7 @@ public class Dao {
 	
 	public ArrayList<Kayttaja> listaaKaikki(String hakusana) {
 		ArrayList<Kayttaja> kayttajat = new ArrayList<Kayttaja>();
-		sql = "SELECT * FROM omatTiedot WHERE Username LIKE ?";       
+		sql = "SELECT * FROM omatTiedot WHERE username LIKE ?";       
 		try {
 			con=yhdista();
 			if(con!=null){ //jos yhteys onnistui
@@ -102,8 +102,8 @@ public class Dao {
 						kayttaja.setWorkPeriodDescription(rs.getString(12));	
 						kayttaja.setOficialJobDescription(rs.getString(13));	
 						kayttaja.setWorkDepartment(rs.getString(14));	
-						kayttaja.setWorkPeriodStartDate(rs.getDate(15));	
-						kayttaja.setWorkPeriodEndDate(rs.getDate(16));	
+						kayttaja.setWorkPeriodStartDate(rs.getString(15));	
+						kayttaja.setWorkPeriodEndDate(rs.getString(16));	
 						kayttaja.setWorkPeriodStatus(rs.getBoolean(17));	
 						kayttaja.setIsSupervisor(rs.getBoolean(18));	
 						kayttaja.setIdOfSupervisor(rs.getString(19));	
